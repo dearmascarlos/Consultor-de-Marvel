@@ -23,4 +23,5 @@ const getMarvel = async (q) => {  // donde (q) podrá ser characters - comics - 
     return response.data.data.results
 }
 
-export default getMarvel
+
+export { apiMarvel, getMarvel } 

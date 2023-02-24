@@ -1,22 +1,25 @@
 import React from 'react'
+import { useNavigate } from 'react-router';
 import { CardActionArea, Card, CardMedia, CardContent, Typography } from '@mui/material';
 
 const defaultDescription  = 'We feel, at this time, for the selected character, we do not have a description.'
 
-function CardMarvel({id, name, image, ext, description}) {
+function CharacterCard({id, name, image, ext, description}) {
+
+  const navigate = useNavigate()
 
   const checkDescription = () => {
     return !description || description == null ? description = defaultDescription : description
   }
 
-  
-
   return (
-    <Card sx={{
-      width: 345,
-      minHeight: 525,
-      margin: 1 
+    <Card 
+      sx={{
+        width: 345,
+        minHeight: 525,
+        margin: 1.5
       }}
+      onClick={() => navigate(`/characters/${id}`)}
     >
       <CardActionArea>
         <CardMedia
@@ -38,5 +41,5 @@ function CardMarvel({id, name, image, ext, description}) {
   )
 }
 
-export default CardMarvel
+export default CharacterCard
 

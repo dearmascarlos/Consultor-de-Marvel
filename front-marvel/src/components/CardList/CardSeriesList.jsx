@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import CardMarvel from '../Card/CardMarvel'
+import SeriesCard from '../Card/SeriesCard'
 
 function CardSeriesList( {info} ) {
 
@@ -8,10 +8,10 @@ function CardSeriesList( {info} ) {
     return (
       info?.map((series, i) => {
         return (
-          <CardMarvel
+          <SeriesCard
             key={i}
             id={series.id}
-            name={series.title}
+            title={series.title}
             image={series.thumbnail.path}
             ext={series.thumbnail.extension}
             description={series.description}

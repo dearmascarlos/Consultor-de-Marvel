@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import CardMarvel from '../Card/CardMarvel'
+import CharacterCard from '../Card/CharacterCard'
 
 function CardCharacterList( {info} ) {
 
@@ -8,7 +8,7 @@ function CardCharacterList( {info} ) {
     return (
       info?.map((character, i) => {
         return (
-          <CardMarvel
+          <CharacterCard
             key={i}
             id={character.id}
             name={character.name}

@@ -1,5 +1,5 @@
 import React from 'react'
-import getMarvel from '../services/apiMarvel'
+import { getMarvel } from '../services/apiMarvel'
 import Header from '../components/Header/Header'
 import CardCharacterList from '../components/CardList/CardCharacterList'
 import { Box } from '@mui/material'
