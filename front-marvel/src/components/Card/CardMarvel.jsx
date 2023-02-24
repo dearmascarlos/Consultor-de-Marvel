@@ -1,27 +1,36 @@
 import React from 'react'
 import { CardActionArea, Card, CardMedia, CardContent, Typography } from '@mui/material';
 
-function CardMarvel() {
+const defaultDescription  = 'We feel, at this time, for the selected character, we do not have a description.'
+
+function CardMarvel({id, name, image, ext, description}) {
+
+  const checkDescription = () => {
+    return !description || description == null ? description = defaultDescription : description
+  }
+
+  
+
   return (
     <Card sx={{
-      maxWidth: 345,
+      width: 345,
+      minHeight: 525,
       margin: 1 
       }}
     >
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          height="300"
+          image={image + '.' + ext}
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
+          <Typography gutterBottom variant="h4" component="div">
+            {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {checkDescription()}
           </Typography>
         </CardContent>
       </CardActionArea>
