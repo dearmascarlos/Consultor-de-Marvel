@@ -18,14 +18,9 @@ hash: 0dc768ea8be5c530ad6abffc6cfe2ce6
 
 */
 
-const getMarvel = async (q) => {
+const getMarvel = async (q) => {  // donde (q) podrá ser characters - comics - series
     const response = await apiMarvel.get(`${q}?ts=1&apikey=fd71abf028139e0e458665e2abb9230c&hash=0dc768ea8be5c530ad6abffc6cfe2ce6`)
-    console.log(response);
     return response.data.data.results
 }
-
-getMarvel('characters')
-
-// donde q podrá ser characters - comics - series
 
 export default getMarvel
