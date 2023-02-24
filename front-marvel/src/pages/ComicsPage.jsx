@@ -1,12 +1,14 @@
 import React from 'react'
 import { getMarvel } from '../services/apiMarvel'
+import { infoContext } from '../App'
+import { useContext } from 'react'
 import Header from '../components/Header/Header'
 import CardComicsList from '../components/CardList/CardComicsList'
 import { Box } from '@mui/material'
 
 function ComicsPage() {
 
-  const [info, setInfo] = React.useState([])
+  const { info, setInfo } = useContext(infoContext)
   
   const getComics = async (q) => {
     const comics = await getMarvel('comics')
