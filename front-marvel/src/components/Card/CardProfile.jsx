@@ -1,6 +1,9 @@
 import React from 'react'
-import { Box, Card, CardContent, CardMedia, Typography, Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import { apikeyFilters } from '../../services/apiMarvel';
+import { Box, Card, CardContent, CardMedia, Typography, Accordion, AccordionDetails, AccordionSummary, Button } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+export const defaultDescription  = 'We feel, at this time, for the selected series, we do not have a description.'
 
 function CardProfile( {info} ) {
   const [expanded, setExpanded] = React.useState(false);
@@ -9,8 +12,35 @@ function CardProfile( {info} ) {
     setExpanded(isExpanded ? panel : false);
   }
 
-    // console.log(info[0].name)
-    // console.log(info[0].thumbnail.path + '.' + info[0].thumbnail.extension)
+  const newInfo = {
+    title: info[0].title,
+    name: info[0].name,
+    image: info[0].thumbnail.path + '.' + info[0].thumbnail.extension,
+    description: info[0].description,
+    url: info[0].urls.map(item => item.url),
+  }
+
+  const checkDescription = () => {
+    return !newInfo.description ? newInfo.description = defaultDescription : newInfo.description
+  }
+
+  const checkTitle = () => {
+    return !newInfo.title ? 'NAME' : 'TITLE'
+  }
+
+  const listUrl = () => {
+    return newInfo.url.map((item, i) => {
+      return (
+        <Button
+          key={i}
+          href={item}
+          target='_blank'
+        >
+          Link {i+1}
+        </Button>
+      )
+    })
+  }
 
   return (
     <Box 
@@ -20,7 +50,7 @@ function CardProfile( {info} ) {
           flexWrap: 'wrap',
           alignItems: 'center',
           width: '100%',
-          height: '580px',
+          height: '100%',
           justifyContent: 'center',
         }}
       >
@@ -29,95 +59,81 @@ function CardProfile( {info} ) {
             mb: 2
           }}
         >
-        <CardContent sx={{}}>
-          <Typography variant="h5" component="div">
-            {info[0].name}
+        <CardContent sx={{maxWidth: '510px'}}>
+          <Typography variant="h4" component="div" >
+            {newInfo.title || newInfo.name}
           </Typography>
-          </CardContent>
           <CardMedia
           sx={{
-            maxWidth: '500px',
-            // maxHeight: '600px's
+            maxWidth: '510px',
+            maxHeight: '560px'
           }}
           component="img"
-          image={info[0].thumbnail.path + '.' + info[0].thumbnail.extension}
+          image={newInfo.image}
           />
+          </CardContent>
           
         </Card>
 
       <Box
-        sx={{ml: 2, mr:2}}
+        sx={{
+          ml: 2, mr:2, mb: 2,
+          maxWidth: 800,
+        }}
       >
         <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap'
+            }}
           >
-            <Typography sx={{ width: '33%', flexShrink: 0 }}>General settings</Typography>
-            <Typography sx={{ color: 'text.secondary' }}>I am an accordion</Typography>
+            <Typography sx={{ width: '60%', flexShrink: 0 }} variant='h5'>{checkTitle()}</Typography>
+            <Typography sx={{ display: { xs: 'none', md: 'flex' }, color: 'text.secondary', mr: 4 }} variant='h6'>{newInfo.title || newInfo.name}</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-              Aliquam eget maximus est, id dignissim quam.
+              {newInfo.title || newInfo.name}
             </Typography>
           </AccordionDetails>
         </Accordion>
-
 
         <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2bh-content"
-            id="panel2bh-header"
+            id="panel2bh-header"sx={{
+              display: 'flex',
+              flexWrap: 'wrap'
+            }}
           >
-            <Typography sx={{ width: '33%', flexShrink: 0 }}>Users</Typography>
-            <Typography sx={{ color: 'text.secondary' }}>
-              You are currently not an owner
-            </Typography>
+            <Typography sx={{ width: '60%', flexShrink: 0 }} variant='h5'>DESCRIPTION</Typography>
+            <Typography sx={{ display: { xs: 'none', md: 'flex' }, color: 'text.secondary', mr: 4 }} variant='h6'>{checkDescription().slice(0,50)}...</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus,
-              varius pulvinar diam eros in elit. Pellentesque convallis laoreet
-              laoreet.
+              {newInfo.description}
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3bh-content"
-            id="panel3bh-header"
-          >
-            <Typography sx={{ width: '33%', flexShrink: 0 }}>
-              Advanced settings
-            </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>
-              Filtering has been entirely disabled for whole web server
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-              amet egestas eros, vitae egestas augue. Duis vel est augue.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
+
         <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel4bh-content"
-            id="panel4bh-header"
+            id="panel4bh-header"sx={{
+              display: 'flex',
+              flexWrap: 'wrap'
+            }}
           >
-            <Typography sx={{ width: '33%', flexShrink: 0 }}>Personal data</Typography>
+            <Typography sx={{ width: '60%', flexShrink: 0 }} variant='h5'>+ INFO</Typography>
+            <Typography sx={{ display: { xs: 'none', md: 'flex' }, color: 'text.secondary', mr: 4 }} variant='h6'>Other links web with more info</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-              amet egestas eros, vitae egestas augue. Duis vel est augue.
-            </Typography>
+            {listUrl()}
           </AccordionDetails>
         </Accordion>
       </Box>

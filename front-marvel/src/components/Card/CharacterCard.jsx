@@ -1,8 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router';
 import { CardActionArea, Card, CardMedia, CardContent, Typography } from '@mui/material';
-
-const defaultDescription  = 'We feel, at this time, for the selected character, we do not have a description.'
+import { defaultDescription } from './CardProfile';
 
 function CharacterCard({id, name, image, ext, description}) {
 
@@ -26,7 +25,7 @@ function CharacterCard({id, name, image, ext, description}) {
           component="img"
           height="300"
           image={image + '.' + ext}
-          alt="green iguana"
+          alt="character"
         />
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">

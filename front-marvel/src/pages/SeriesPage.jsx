@@ -25,10 +25,11 @@ function SeriesPage() {
         className='box-container'
         sx={{
           justifyContent: 'center',
-          mt: 35,
+          mt: 30,
           padding: 2
         }}
-      >
+        >
+        <h1>Series</h1>
         
         <CardSeriesList info={info}/>
       </Box>

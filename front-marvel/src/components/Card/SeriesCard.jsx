@@ -1,8 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router';
 import { CardActionArea, Card, CardMedia, CardContent, Typography } from '@mui/material';
-
-const defaultDescription  = 'We feel, at this time, for the selected series, we do not have a description.'
+import { defaultDescription } from './CardProfile';
 
 function SeriesCard({id, title, image, ext, description}) {
 

@@ -25,6 +25,7 @@ function CharactersProfilePage() {
       className='box-page'
     >
       <Header/>
+      
       <Box 
         className='box-container'
         sx={{

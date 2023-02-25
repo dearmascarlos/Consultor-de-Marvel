@@ -20,9 +20,19 @@ function ComicsProfilePage() {
 
   React.useEffect(() => {getOneComic()}, [id])
   return (
-    <Box>
+    <Box 
+      className='box-page'
+    >
       <Header/>
-      <CardProfile info={info}/>
+      <Box 
+        className='box-container'
+        sx={{
+          justifyContent: 'center',
+          mt: 33,
+        }}
+      >
+        <CardProfile info={info}/>
+      </Box>
     </Box>
   )
 }
