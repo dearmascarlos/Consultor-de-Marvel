@@ -26,7 +26,7 @@ function SeriesCard({id, title, image, ext, description}) {
           component="img"
           height="300"
           image={image + '.' + ext}
-          alt="green iguana"
+          alt="serie"
         />
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">

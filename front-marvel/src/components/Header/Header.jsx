@@ -1,8 +1,6 @@
 import React from 'react'
 import './Header.css'
 import { useNavigate } from 'react-router';
-// import { searchContext } from '../../App';
-// import { useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,20 +11,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import SearchIcon from '@mui/icons-material/Search';
-import InputBase from '@mui/material/InputBase';
-import { styled, alpha, createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#919191'
+      main: '#d45959'
     },
     secondary: {
       main: '#6e68df'
     }, 
     text: {
-      main: '#ed1d24',
+      main: '#ffffff',
       constrast: '#a6aff3'
     }
   }
@@ -34,62 +30,11 @@ const theme = createTheme({
 
 const pages = ['Characters', 'Comics', 'Series'];
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  // marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    // marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
-
 function Header() {
-//   const { search, setSearch } = useContext(searchContext)
 
   const navigate = useNavigate()
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
-  const handleOnChangeSearch = (e) => {
-    // setSearch(e.target.value)
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // navigate('/search')
-    e.target.reset()
-  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -125,12 +70,23 @@ function Header() {
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
+              theme={theme}
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color='text'
+              sx={{
+                boxShadow: '10px 5px 10px',
+                backgroundColor: 'white',
+                color: 'red',
+                  '&:hover': {
+                    backgroundColor: 'red',
+                    color: 'white',
+                    opacity: '0.7'
+                  }
+              }}
             >
               <MenuIcon />
             </IconButton>
@@ -153,7 +109,10 @@ function Header() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem 
+                  key={page} 
+                  onClick={handleCloseNavMenu}
+                >
                   <Typography textAlign="center" onClick={(e) => navigate(`/${page}`)}>{page}</Typography>
 
                 </MenuItem>
@@ -191,31 +150,26 @@ function Header() {
                 key={page}
                 // onClick={handleCloseNavMenu}
                 onClick={(e) => navigate(`/${page}`)}
-                sx={{ 
+                sx={{
+                  borderRadius: '10px',
+                  boxShadow: '10px 5px 10px', 
                   my: 6, 
                   color: 'red', 
                   display: 'block' , 
                   fontSize: 22,
-                  backgroundColor: 'white'
+                  backgroundColor: 'white',
+                  '&:hover': {
+                    backgroundColor: 'red',
+                    color: 'white',
+                    opacity: '0.7'
+                  }
+                  
                 }}
               >
                 {page}
               </Button>
             ))}
           </Box>
-          <form onSubmit={handleSubmit}> 
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search News"
-              inputProps={{ 'aria-label': 'search' }}
-            //   value={search}
-              onChange={(e) => handleOnChangeSearch(e)}
-            />
-          </Search>
-          </form>
         </Toolbar>
       </Container>
     </AppBar>

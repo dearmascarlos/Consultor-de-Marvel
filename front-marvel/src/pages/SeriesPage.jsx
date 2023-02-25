@@ -15,8 +15,6 @@ function SeriesPage() {
     return false
   }
 
-  console.log(info)
-
   React.useEffect(() => {getSeries()}, [])  
   return (
     <Box 

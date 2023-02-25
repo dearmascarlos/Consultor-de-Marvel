@@ -18,8 +18,6 @@ function SeriesProfilePage() {
     return false
   }
 
-  console.log(info)
-
   React.useEffect(() => {getOneSerie()}, [id])
   return (
     <Box>
