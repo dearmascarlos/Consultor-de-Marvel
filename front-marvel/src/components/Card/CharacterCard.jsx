@@ -1,7 +1,7 @@
 import React from 'react'
+import { defaultDescription } from './CardProfile';
 import { useNavigate } from 'react-router';
 import { CardActionArea, Card, CardMedia, CardContent, Typography } from '@mui/material';
-import { defaultDescription } from './CardProfile';
 
 function CharacterCard({id, name, image, ext, description}) {
 

@@ -1,6 +1,6 @@
-import { Box } from '@mui/material'
 import React from 'react'
 import CharacterCard from '../Card/CharacterCard'
+import { Box } from '@mui/material'
 
 function CardCharacterList( {info} ) {
 
@@ -21,7 +21,7 @@ function CardCharacterList( {info} ) {
     )
   }
 
-  React.useEffect(() => {renderCards()}, [])
+  // React.useEffect(() => {renderCards()}, [])
   return (
     <Box 
       className='list-box'

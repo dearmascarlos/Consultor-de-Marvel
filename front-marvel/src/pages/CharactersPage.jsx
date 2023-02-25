@@ -1,21 +1,23 @@
 import React from 'react'
+import { useContext } from 'react'
 import { getMarvel } from '../services/apiMarvel'
 import { infoContext } from '../App'
-import { useContext } from 'react'
-import Header from '../components/Header/Header'
 import CardCharacterList from '../components/CardList/CardCharacterList'
+import Header from '../components/Header/Header'
 import { Box, Button } from '@mui/material'
     
 function CharactersPage() {
   const { info, setInfo } = useContext(infoContext)
 
-  const getCharacters = async (q) => {
-    const characters = await getMarvel('characters')
-    setInfo(characters)
-    return false
-  }
+  React.useEffect(() => {
+    const getCharacters = async (q) => {
+      const characters = await getMarvel('characters')
+      setInfo(characters)
+      return false
+    }
+    getCharacters()
+  }, [setInfo])
 
-  React.useEffect(() => {getCharacters()}, [])  
   return (
     <Box 
       className='box-page'

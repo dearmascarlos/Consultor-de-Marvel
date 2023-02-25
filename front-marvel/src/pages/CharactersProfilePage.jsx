@@ -1,11 +1,11 @@
 import React from 'react'
-import { getCharactersById } from '../services/characters.service'
-import { infoContext } from '../App'
 import { useContext } from 'react'
-import Header from '../components/Header/Header'
 import { useParams } from 'react-router'
-import { Box } from '@mui/material'
+import { infoContext } from '../App'
+import { getCharactersById } from '../services/characters.service'
+import Header from '../components/Header/Header'
 import CardProfile from '../components/Card/CardProfile'
+import { Box } from '@mui/material'
 
 function CharactersProfilePage() {
   const { info, setInfo } = useContext(infoContext)
